@@ -29,17 +29,20 @@ def index():
         num = False
 
         if math_latex != None:
-            try:
+            # try:
                 if math_latex.startswith('N;'):
                     num = True
                     math_latex = math_latex[2:]
 
                 if ';' not in math_latex:
                     print('huh.')
-                    if isinstance(a := sympy.simplify(parse_latex(math_latex).doit()), sympy.Eq):
-                        output = sympy.latex([sympy.N(s) for s in sympy.solve(a)])
-                    else:
-                        output = sympy.latex(a) if not num else sympy.latex(sympy.N(a))
+                    try:
+                        if isinstance(a := sympy.simplify(parse_latex(math_latex).doit()), sympy.Eq):
+                            output = sympy.latex([sympy.N(s) for s in sympy.solve(a)] if num else sympy.solve(a))
+                        else:
+                            output = sympy.latex(a) if not num else sympy.latex(sympy.N(a))
+                    except AttributeError:
+                        output = sympy.latex(sympy.solve(parse_latex(math_latex)))
                     print('huh...')
                     print(a)
                 else:
@@ -58,7 +61,14 @@ def index():
                     print(eqs)
                     print(neqs)
 
-                    output = sympy.latex(sympy.solve(eqs))
+                    output_raw = sympy.solve(eqs)
+                    if isinstance(output_raw, dict):
+                        print('itsa dict')
+                        print(output_raw)
+                        for key in output_raw.keys():
+                            print(output_raw[key])
+                    output = sympy.latex(output_raw)
+                    
                     for n in neqs:
                         n2 = sympy.latex(sympy.simplify(parse_latex(n).doit()))
                         if '=' in n:
@@ -66,9 +76,9 @@ def index():
                         else:
                             output = output + r' \\'+str(n) + '=' + str(n2)
                     print(output)
-            except Exception as e:
-                output = r'\text{There was an error. Check your input: }' + str(math_latex)
-                print(e)
+            # except Exception as e:
+            #     output = r'\text{There was an error. Check your input: }' + str(math_latex)
+            #     print(e)
         else:
             output = ''
 
