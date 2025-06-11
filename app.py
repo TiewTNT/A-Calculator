@@ -62,21 +62,20 @@ def index():
                     print(neqs)
 
                     output_raw = sympy.solve(eqs)
-                    if isinstance(output_raw, dict):
-                        print(output_raw)
-                        for key in output_raw:
-                            print(output_raw[key])
-                            if num:
+                    if num:
+                        if isinstance(output_raw, dict):
+                            print(output_raw)
+                            for key in output_raw:
+                                print(output_raw[key])
                                 try:
                                     output_raw[key] = sympy.N(output_raw[key]) 
                                 except:
                                     print('thats fine')
-                    if isinstance(output_raw, list):
-                        print(output_raw)
-                        for o in output_raw:
-                            for key in o:
-                                print(o[key])
-                                if num:
+                        if isinstance(output_raw, list):
+                            print(output_raw)
+                            for o in output_raw:
+                                for key in o:
+                                    print(o[key])
                                     try:
                                         o[key] = sympy.N(o[key]) 
                                     except:
