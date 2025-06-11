@@ -44,7 +44,7 @@ def index():
                     except AttributeError:
                         output = sympy.latex(sympy.solve(parse_latex(math_latex)))
                     print('huh...')
-                    print(a)
+
                 else:
                     print('semicolons...')
                     lines = math_latex.split(';')
