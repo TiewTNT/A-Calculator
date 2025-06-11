@@ -38,11 +38,17 @@ def index():
                     print('huh.')
                     try:
                         if isinstance(a := sympy.simplify(parse_latex(math_latex).doit()), sympy.Eq):
+                            print(a)
                             output = sympy.latex([sympy.N(s) for s in sympy.solve(a)] if num else sympy.solve(a))
                         else:
+                            print(a)
                             output = sympy.latex(a) if not num else sympy.latex(sympy.N(a))
                     except AttributeError:
-                        output = sympy.latex(sympy.solve(parse_latex(math_latex)))
+                        print(p := parse_latex(math_latex))
+                        if isinstance(p, sympy.Eq):
+                            output = sympy.latex(sympy.solve(sympy.Eq(p.lhs.doit(), p.rhs.doit())))
+                        else:
+                            output = sympy.latex(sympy.solve(p))
                     print('huh...')
 
                 else:
