@@ -35,13 +35,15 @@ def index():
                     math_latex = math_latex[2:]
 
                 if ';' not in math_latex:
+                    print('huh.')
                     if isinstance(a := sympy.simplify(parse_latex(math_latex).doit()), sympy.Eq):
-                        output = sympy.latex(sympy.solve(a))
+                        output = sympy.latex([sympy.N(s) for s in sympy.solve(a)])
                     else:
                         output = sympy.latex(a) if not num else sympy.latex(sympy.N(a))
-                    print('huh.')
+                    print('huh...')
                     print(a)
                 else:
+                    print('semicolons...')
                     lines = math_latex.split(';')
                     print(lines)
                     print(len(lines))
