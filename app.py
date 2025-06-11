@@ -11,7 +11,6 @@ app = Flask(__name__)
 substitutions = {
         Symbol('pi'): pi,
         Symbol('e'): E,
-        Symbol('oo'): oo,
         Symbol('imaginaryI'): I
     }
 
