@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from sympy.parsing.latex import parse_latex as sympy_parse_latex
-from sympy import pi, E, oo, Symbol
+from sympy import pi, E, oo, I, Symbol
 
 import sympy
 import random
@@ -11,7 +11,8 @@ app = Flask(__name__)
 substitutions = {
         Symbol('pi'): pi,
         Symbol('e'): E,
-        Symbol('oo'): oo
+        Symbol('oo'): oo,
+        Symbol('imaginaryI'): I
     }
 
 def parse_latex(latex):
