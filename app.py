@@ -63,10 +63,24 @@ def index():
 
                     output_raw = sympy.solve(eqs)
                     if isinstance(output_raw, dict):
-                        print('itsa dict')
                         print(output_raw)
-                        for key in output_raw.keys():
+                        for key in output_raw:
                             print(output_raw[key])
+                            if num:
+                                try:
+                                    output_raw[key] = sympy.N(output_raw[key]) 
+                                except:
+                                    print('thats fine')
+                    if isinstance(output_raw, list):
+                        print(output_raw)
+                        for o in output_raw:
+                            for key in o:
+                                print(o[key])
+                                if num:
+                                    try:
+                                        o[key] = sympy.N(o[key]) 
+                                    except:
+                                        print('thats fine')
                     output = sympy.latex(output_raw)
                     
                     for n in neqs:
