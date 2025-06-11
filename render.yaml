@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: a-calculator
+    env: python
+    buildCommand: ""
+    startCommand: "python app.py"

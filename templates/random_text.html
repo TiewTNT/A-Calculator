@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{output}}</title>
+  <style>
+  body {
+    animation: flash 0.2s infinite;
+  }
+  @keyframes flash {
+    0%   { background-color: black; }
+    50%  { background-color: magenta; }
+    100% { background-color: black; }
+  }
+</style>
+</head>
+<body>
+   <h1 style="color: red; font-size: 100px;"><marquee scrollamount="50" scrolldelay="1">{{output}}</marquee></h1>
+</body>
+</html>

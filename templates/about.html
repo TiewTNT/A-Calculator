@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/mathlive"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+    <title>About a Calculator</title>
+    <style>
+        body {
+            font-family: 'Tinos';
+            background-color: #333541;
+            color: #f0efe8
+        }
+
+        form {
+            background-color: #4e5162;
+            padding: 3rem;
+            margin: 2rem;
+            border-radius: 1rem;
+        }
+
+        button {
+            all: unset;
+            font-family: 'Tinos';
+            padding: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content;
+            color: #f0efe8;
+            font-size: 1.2rem;
+            background-color: #333541;
+            border-radius: 1rem;
+        }
+
+        button:hover {
+            background-color: #4e5162;
+        }
+
+        a {
+            all: unset;
+            font-family: 'Tinos';
+            padding: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content;
+            color: #f0efe8;
+            font-size: 1.2rem;
+            background-color: #4e5162;
+            border-radius: 1rem;
+        }
+
+        a:hover {
+            background-color: #333541;
+        }
+
+        p {
+            all: unset;
+            font-family: 'Tinos';
+            padding: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content;
+            color: #f0efe8;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <p>This is a calculator.<br />
+        It's a calculator. You put things in the text field like $$1+1$$ and it will solve it for you.<br />
+        You will notice that when you try to calculate things like $$1 + \frac{1}{2}$$ it will not return 1.5 but rather
+        $$\frac{3}{2}$$<br />
+        This is intentional, and this calculator will rather use exact answer, usually fractions, than decimals like
+        1.5<br />
+        If you want a decimal, type N; in front of your expression. Like this: $$N;1+\frac{1}{2}$$
+        This will return your desired answer of $$1.5$$
+        <br />
+        This calculator is a work-in-progress, and not stable.<br />
+        You can try entering equations like: $$3x+2=11$$but don't expect it to work. It probably will, though.<br />
+        <br />
+        <br />
+        <br />
+        This calculator is powered by SymPy.<br />
+        The input field is by MathLive.<br />
+        Rendering by KaTeX.<br />
+        The website powered by Flask.
+
+    </p>
+    <a href="/">← Back</a>
+
+
+</body>
+
+</html>
