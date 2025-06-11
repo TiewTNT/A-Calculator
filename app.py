@@ -29,7 +29,7 @@ def index():
         num = False
 
         if math_latex != None:
-            # try:
+            try:
                 if math_latex.startswith('N;'):
                     num = True
                     math_latex = math_latex[2:]
@@ -89,9 +89,9 @@ def index():
                         else:
                             output = output + r' \\'+str(n) + '=' + str(n2)
                     print(output)
-            # except Exception as e:
-            #     output = r'\text{There was an error. Check your input: }' + str(math_latex)
-            #     print(e)
+            except Exception as e:
+                output = r'\text{There was an error. Check your input: }' + str(math_latex)
+                print(e)
         else:
             output = ''
 
