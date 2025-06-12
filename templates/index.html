@@ -8,29 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
   <script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  },
-  options: {
-    renderActions: {
-      addMenu: []
-    }
-  },
-  svg: {
-    linebreaks: { automatic: true }
-  },
-  chtml: {
-    linebreaks: { automatic: true },
-     displayAlign: 'left'
-  }
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        renderActions: {
+          addMenu: []
+        }
+      },
+      svg: {
+        linebreaks: { automatic: true }
+      },
+      chtml: {
+        linebreaks: { automatic: true },
+        displayAlign: 'left'
+      }
 
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
   <title>A Calculator</title>
   <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
 
@@ -102,10 +101,10 @@ MathJax = {
     a:hover {
       background-color: #333541;
     }
-    .katex-display {
-    text-align: left !important;
-}
 
+    .katex-display {
+      text-align: left !important;
+    }
   </style>
 </head>
 
@@ -134,7 +133,7 @@ MathJax = {
 
     form.addEventListener("submit", function (event) {
       // Before submitting, copy the MathLive value into the hidden input
-      hiddenInput.value = mathField.getValue("latex");
+      hiddenInput.value = mathField.getValue("latex-expanded");
     });
   </script>
 

@@ -56,6 +56,8 @@ def index():
                     
                 for n in neqs:
                     n2 = sympy.simplify(parse_latex(n).doit())
+                    print(parse_latex(n))
+                    print(n2, 'n2')
                     if num:
                         try:
                             n2 = sympy.N(n2)
