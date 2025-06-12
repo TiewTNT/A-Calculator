@@ -5,6 +5,9 @@ import sympy
 import random
 import os
 
+from mathml_to_latex.converter import MathMLToLaTeX
+import latex2mathml.converter
+
 app = Flask(__name__)
 
 substitutions = {
@@ -22,16 +25,21 @@ def about():
 
 @app.route('/', methods=['GET','POST'])
 def index():
+    num = False
     math_latex = request.form.get('math')
     print(f"Received LaTeX: {math_latex}")
+    if math_latex:
+        if math_latex.startswith('N ; '):
+            num = True
+            math_latex = math_latex[4:]
+        math_latex = latex2mathml.converter.convert(math_latex)
+        math_latex = MathMLToLaTeX().convert(math_latex)
+    print(f"Received LaTeX: {math_latex}")
     if random.randint(0, 99) or not math_latex:
-        num = False
+        
 
         if math_latex != None:
             try:
-                if math_latex.startswith('N;'):
-                    num = True
-                    math_latex = math_latex[2:]
 
                 lines = math_latex.split(';')
                 print(lines)
