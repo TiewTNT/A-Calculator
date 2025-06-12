@@ -2,11 +2,20 @@
 <html>
 
 <head>
-  <script src="https://unpkg.com/mathlive"></script>
+  <!-- MathQuill CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css">
+
+  <!-- jQuery (required by MathQuill) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+  <!-- MathQuill JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
+
   <script>
     MathJax = {
       tex: {
@@ -18,18 +27,13 @@
           addMenu: []
         }
       },
-      svg: {
-        linebreaks: { automatic: true }
-      },
-      chtml: {
-        linebreaks: { automatic: true },
-        displayAlign: 'left'
-      }
-
+      svg: { linebreaks: { automatic: true } },
+      chtml: { linebreaks: { automatic: true }, displayAlign: 'left' }
     };
   </script>
-  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
   <title>A Calculator</title>
   <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
 
@@ -37,7 +41,7 @@
     body {
       font-family: 'Tinos';
       background-color: #333541;
-      color: #f0efe8
+      color: #f0efe8;
     }
 
     form {
@@ -45,12 +49,6 @@
       padding: 3rem;
       margin: 2rem;
       border-radius: 1rem;
-    }
-
-    math-field {
-      background-color: #333541;
-      color: #f0efe8;
-      border: none;
     }
 
     button {
@@ -71,13 +69,18 @@
       background-color: #4e5162;
     }
 
-    math-field {
-      margin-left: auto;
-      margin-right: auto;
+    #math-editable {
       display: block;
       width: fit-content;
-      font-size: 2rem;
+      margin: auto;
       margin-bottom: 1rem;
+      padding: 1.5rem;
+      background-color: #333541;
+      color: #f0efe8;
+      border: none;
+      font-size: 3.5rem;
+      min-height: 2.5rem;
+      border-radius: 1rem;
     }
 
     p {
@@ -110,8 +113,7 @@
 
 <body>
   <form id="math-form" method="POST" action="/">
-    <math-field id="math-field" placeholder="\text{Enter your math expression here.}"
-      virtual-keyboard-mode="manual">{{input}}</math-field>
+    <span id="math-editable">{{input}}</span>
     <input type="hidden" name="math" id="math-hidden">
     <button type="submit">Evaluate Expression</button>
   </form>
@@ -127,20 +129,28 @@
   </p>
 
   <script>
+    const MQ = MathQuill.getInterface(2);
+    const mathEditableSpan = document.getElementById("math-editable");
+    const mathField = MQ.MathField(mathEditableSpan, {
+      spaceBehavesLikeTab: true,
+      handlers: {
+        edit: () => {
+          // Optional: live update preview or value
+        }
+      }
+    });
+
+
     const form = document.getElementById("math-form");
-    const mathField = document.getElementById("math-field");
     const hiddenInput = document.getElementById("math-hidden");
 
     form.addEventListener("submit", function (event) {
-      // Before submitting, copy the MathLive value into the hidden input
-      hiddenInput.value = mathField.getValue("latex");
-      console.log('Hi!');
-      console.log(hiddenInput.value)
+      let latex = mathField.latex();
+      hiddenInput.value = latex;
     });
   </script>
 
   <footer><a href="/about">About a Calculator</a></footer>
-
 </body>
 
 </html>
