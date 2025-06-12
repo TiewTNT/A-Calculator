@@ -33,6 +33,7 @@ def index():
                 if math_latex.startswith('N;'):
                     num = True
                     math_latex = math_latex[2:]
+
                 lines = math_latex.split(';')
                 print(lines)
                 print(len(lines))
@@ -43,7 +44,7 @@ def index():
                     if isinstance(l := parse_latex(m), sympy.Eq):
                         eqs.append(sympy.N(l) if num else l)
                     else:
-                        neqs.append(l)
+                        neqs.append(m)
                 print(eqs)
                 print(neqs)
 
@@ -54,11 +55,15 @@ def index():
                     output = ''
                     
                 for n in neqs:
-                    n2 = sympy.simplify(n.doit())
+                    n2 = sympy.simplify(parse_latex(n).doit())
                     if num:
-                        n2 = sympy.N(n2)
+                        try:
+                            n2 = sympy.N(n2)
+                        except AttributeError:
+                            n2 = n2
                     n2 = sympy.latex(n2)
-                    if eqs != 0 and len(neqs) != 1:
+
+                    if ';' in math_latex:
                         if '=' in n:
                             output = output + r' \\'+str(n) + r'\text{ is }' + str(n2)
                         else:
