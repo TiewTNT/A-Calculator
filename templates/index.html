@@ -7,11 +7,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body);"></script>
-
+  <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  options: {
+    renderActions: {
+      addMenu: []
+    }
+  },
+  svg: {
+    linebreaks: { automatic: true }
+  },
+  chtml: {
+    linebreaks: { automatic: true }
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
   <title>A Calculator</title>
   <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
 
@@ -83,6 +100,10 @@
     a:hover {
       background-color: #333541;
     }
+    .katex-display {
+    text-align: left !important;
+}
+
   </style>
 </head>
 
@@ -96,9 +117,11 @@
 
   <p>
     $$
-    \begin{aligned}
+    \displaystyle{
+    \begin{align}
     {{output}}
-    \end{aligned}
+    \end{align}
+    }
     $$
   </p>
 
