@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 from sympy.parsing.latex import parse_latex as sympy_parse_latex
-from sympy import pi, E, oo, I, Symbol
-
+from sympy import pi, E, I, Symbol
 import sympy
 import random
 import os

@@ -133,7 +133,9 @@
 
     form.addEventListener("submit", function (event) {
       // Before submitting, copy the MathLive value into the hidden input
-      hiddenInput.value = mathField.getValue("latex-expanded");
+      hiddenInput.value = mathField.getValue("latex");
+      console.log('Hi!');
+      console.log(hiddenInput.value)
     });
   </script>
 
