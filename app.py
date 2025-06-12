@@ -29,75 +29,51 @@ def index():
         num = False
 
         if math_latex != None:
-            try:
+            # try:
                 if math_latex.startswith('N;'):
                     num = True
                     math_latex = math_latex[2:]
 
-                if ';' not in math_latex:
-                    print('huh.')
-                    try:
-                        if isinstance(a := sympy.simplify(parse_latex(math_latex).doit()), sympy.Eq):
-                            print(a)
-                            output = sympy.latex([sympy.N(s) for s in sympy.solve(a)] if num else sympy.solve(a))
-                        else:
-                            print(a)
-                            output = sympy.latex(a) if not num else sympy.latex(sympy.N(a))
-                    except AttributeError:
-                        print(p := parse_latex(math_latex))
-                        if isinstance(p, sympy.Eq):
-                            output = sympy.latex(sympy.solve(sympy.Eq(p.lhs.doit(), p.rhs.doit())))
-                        else:
-                            output = sympy.latex(sympy.solve(p))
-                    print('huh...')
+                lines = math_latex.split(';')
+                print(lines)
+                print(len(lines))
+                eqs = []
+                neqs = []
+                for m in lines:
+                    print(m, 'm')
+                    if isinstance(l := parse_latex(m), sympy.Eq):
+                        eqs.append(sympy.N(l) if num else l)
+                    else:
+                        neqs.append(m)
+                print(eqs)
+                print(neqs)
 
-                else:
-                    print('semicolons...')
-                    lines = math_latex.split(';')
-                    print(lines)
-                    print(len(lines))
-                    eqs = []
-                    neqs = []
-                    for m in lines:
-                        print(m)
-                        if isinstance(l := parse_latex(m), sympy.Eq):
-                            eqs.append(l)
-                        else:
-                            neqs.append(m)
-                    print(eqs)
-                    print(neqs)
-
-                    output_raw = sympy.solve(eqs)
-                    if num:
-                        if isinstance(output_raw, dict):
-                            print(output_raw)
-                            for key in output_raw:
-                                print(output_raw[key])
-                                try:
-                                    output_raw[key] = sympy.N(output_raw[key]) 
-                                except:
-                                    print('thats fine')
-                        if isinstance(output_raw, list):
-                            print(output_raw)
-                            for o in output_raw:
-                                for key in o:
-                                    print(o[key])
-                                    try:
-                                        o[key] = sympy.N(o[key]) 
-                                    except:
-                                        print('thats fine')
+                output_raw = sympy.solve(eqs)
+                if eqs != []:
                     output = sympy.latex(output_raw)
+                else:
+                    output = ''
                     
-                    for n in neqs:
-                        n2 = sympy.latex(sympy.simplify(parse_latex(n).doit()))
+                for n in neqs:
+                    n2 = sympy.simplify(parse_latex(n).doit())
+                    if num:
+                        try:
+                            n2 = sympy.N(n2)
+                        except AttributeError:
+                            n2 = n2
+                    n2 = sympy.latex(n2)
+
+                    if ';' in math_latex:
                         if '=' in n:
                             output = output + r' \\'+str(n) + r'\text{ is }' + str(n2)
                         else:
                             output = output + r' \\'+str(n) + '=' + str(n2)
-                    print(output)
-            except Exception as e:
-                output = r'\text{There was an error. Check your input: }' + str(math_latex)
-                print(e)
+                    else:
+                        output = n2
+                print(output)
+            # except Exception as e:
+            #     output = r'\text{There was an error. ('+str(e)+r') Check your input: }' + str(math_latex)
+            #     print(e)
         else:
             output = ''
 
