@@ -80,7 +80,7 @@
             padding: 1%;
             border-radius: 25%;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-            transition: box-shadow 0.3s ease, color 0.3s ease, transform 0.1s ease;
+            transition: box-shadow 0.3s linear, color 0.3s ease, transform 0.1s ease;
         }
         .logo:hover {            
             box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
@@ -105,13 +105,15 @@
         <br />
         This calculator is a work-in-progress, and not stable.<br />
         You can try entering equations like: $$3x+2=11$$but don't expect it to work. It probably will, though.<br />
+        <br/>
+        To enter a system of equations, separate lines by a semicolon (;): $$xy=10;x-y=3$$
         <br />
         <br />
         <br />
         <div class="credits">
         This calculator is powered by SymPy.<br />
         The input field is by MathLive.<br />
-        Rendering by MathJax and KaTeX.<br />
+        Rendering by KaTeX.<br />
         The website powered by Flask.
         </div>
         <footer>
