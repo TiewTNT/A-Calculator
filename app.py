@@ -32,6 +32,9 @@ def index():
         if math_latex.startswith('N ; '):
             num = True
             math_latex = math_latex[4:]
+        elif math_latex.startswith('N;'):
+            num = True
+            math_latex = math_latex[2:]
         math_latex = latex2mathml.converter.convert(math_latex)
         math_latex = MathMLToLaTeX().convert(math_latex)
     print(f"Received LaTeX: {math_latex}")
