@@ -46,24 +46,6 @@
             background-color: #4e5162;
         }
 
-        a {
-            all: unset;
-            font-family: 'Tinos';
-            padding: 1rem;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            width: fit-content;
-            color: #f0efe8;
-            font-size: 1.2rem;
-            background-color: #4e5162;
-            border-radius: 1rem;
-        }
-
-        a:hover {
-            background-color: #333541;
-        }
-
         p {
             all: unset;
             font-family: 'Tinos';
@@ -80,6 +62,33 @@
             text-align: center;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 10rem;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2rem;
+            width: 5%;
+            height: auto;
+            display: block;
+            position: fixed;
+            bottom: 2rem;
+            left: 46.5%;
+            background-color: #333541;
+            padding: 1%;
+            border-radius: 25%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease, color 0.3s ease, transform 0.1s ease;
+        }
+        .logo:hover {            
+            box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+            transform: scale(1.01);
+        }
+        .logo:active {            
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
         }
     </style>
 </head>
@@ -105,9 +114,11 @@
         Rendering by MathJax and KaTeX.<br />
         The website powered by Flask.
         </div>
+        <footer>
+            <a href="/"><img src="/static/favicon.svg" alt="Logo" class="logo"></a>
+        </footer>
 
     </p>
-    <a href="/">← Back</a>
 
 
 </body>

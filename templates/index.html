@@ -105,6 +105,19 @@
     .katex-display {
       text-align: left !important;
     }
+
+    .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2rem;
+            width: 5%;
+            height: auto;
+            display: block;
+            position: fixed;
+            bottom: 2rem;
+            left: 47.5%;
+        }
   </style>
 </head>
 
@@ -115,6 +128,7 @@
     <input type="hidden" name="math" id="math-hidden">
     <button type="submit">Evaluate Expression</button>
   </form>
+
 
   <p>
     $$
@@ -139,7 +153,8 @@
     });
   </script>
 
-  <footer><a href="/about">About a Calculator</a></footer>
+  <footer><a href="/about">About a Calculator</a>
+  <img src="/static/favicon.svg" alt="Logo" class="logo"></footer>
 
 </body>
 
