@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template
 from sympy import pi, E, I, Symbol
 import sympy
+from sympy.parsing.latex import parse_latex as sympy_parse_latex
 import random
 import os
-import latex2sympy2
 
 app = Flask(__name__)
 
@@ -14,7 +14,7 @@ substitutions = {
     }
 
 def parse_latex(latex):
-    return latex2sympy2.latex2sympy(latex).subs(substitutions)
+    return sympy_parse_latex(latex).subs(substitutions)
 
 @app.route('/about')
 def about():
@@ -38,7 +38,6 @@ def index():
 
         if math_latex != None:
             try:
-
                 lines = math_latex.split(';')
                 print(lines)
                 print(len(lines))
@@ -60,7 +59,11 @@ def index():
                     output = ''
                     
                 for n in neqs:
-                    n2 = sympy.simplify(parse_latex(n).doit())
+                    try:
+                        n2 = sympy.simplify(parse_latex(n).doit())
+                    except AttributeError:
+                        n2 = parse_latex(n)
+                        print(n2,'= n2')
                     print(parse_latex(n))
                     print(n2, 'n2')
                     if num:

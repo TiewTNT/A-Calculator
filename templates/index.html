@@ -145,7 +145,7 @@
 
     form.addEventListener("submit", function (event) {
       // Before submitting, copy the MathLive value into the hidden input
-      hiddenInput.value = mathField.getValue("latex")//.replace(/\\([a-zA-Z]+)(\d)(?![\d{])/g, '\\$1{$2}');
+      hiddenInput.value = mathField.getValue("latex").replace(/\\([a-zA-Z]+)(\d)(?![\d{])/g, '\\$1{$2}');
       console.log('Hi!');
       console.log(hiddenInput.value)
     });
