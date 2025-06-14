@@ -1,12 +1,9 @@
 from flask import Flask, request, render_template
-from sympy.parsing.latex import parse_latex as sympy_parse_latex
 from sympy import pi, E, I, Symbol
 import sympy
 import random
 import os
-
-from mathml_to_latex.converter import MathMLToLaTeX
-import latex2mathml.converter
+import latex2sympy2
 
 app = Flask(__name__)
 
@@ -17,7 +14,7 @@ substitutions = {
     }
 
 def parse_latex(latex):
-    return sympy_parse_latex(latex).subs(substitutions)
+    return latex2sympy2.latex2sympy(latex).subs(substitutions)
 
 @app.route('/about')
 def about():
@@ -35,8 +32,6 @@ def index():
         elif math_latex.startswith('N;'):
             num = True
             math_latex = math_latex[2:]
-        math_latex = latex2mathml.converter.convert(math_latex)
-        math_latex = MathMLToLaTeX().convert(math_latex)
     print(f"Received LaTeX: {math_latex}")
     if random.randint(0, 99) or not math_latex:
         
